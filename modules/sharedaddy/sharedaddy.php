@@ -23,7 +23,6 @@ function sharing_email_send_post( $data ) {
 
 function sharing_add_meta_box() {
 	$post = $wp_query->post;
-	echo $post->ID;
 	$post_types = get_post_types( array( 'public' => true ) );
 	$title = apply_filters( 'sharing_meta_box_title', __( 'Sharing', 'jetpack' ) );
 	if ( $post->ID == get_option( 'page_for_posts' ) && empty( $post->post_content ) ) {
@@ -41,6 +40,7 @@ function sharing_meta_box_content( $post ) {
 	$disabled = get_post_meta( $post->ID, 'sharing_disabled', true ); ?>
 
 	<p>
+		<?php echo $post->ID; ?>
 		<label for="enable_post_sharing">
 			<input type="checkbox" name="enable_post_sharing" id="enable_post_sharing" value="1" <?php checked( !$disabled ); ?>>
 			<?php _e( 'Show sharing buttons.' , 'jetpack'); ?>
